@@ -1,22 +1,27 @@
 {% for field in form %}
-  <div>
-    {% if field.errors %}
-      <ul>
-        {% for error in field.errors %}
-          <li>
-            <span style="color: red;">{{ error }}</span>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-    <div>{{ field.label }}</div>
-    {{ field }}
-  </div>
+    <div>
+        <div class="field-label">{{ field.label }}</div>
+        {{ field }}
+        {% if field.errors %}
+            <ul>
+                {% for error in field.errors %}
+                    <li>
+                        <span class="field-error-message">{{ error }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
 {% endfor %}
+{% comment %}
+Example of manually creating the field markup:
+
+<input type="text" name="{{ form.name.html_name }}" id="{{ form.name.id_for_label }}" value="{{ form.name.value|default:'' }}" maxlength="{{ form.name.field_max_length }}" placeholder="Enter your name">
+{% endcomment %}
 <ul>
-  {% for error in form.non_field_errors %}
-    <li>
-      <span style="color: purple;">{{ error }}</span>
-    </li>
-  {% endfor %}
+    {% for error in form.non_field_errors %}
+        <li>
+            <span class="form-error-message">{{ error }}</span>
+        </li>
+    {% endfor %}
 </ul>

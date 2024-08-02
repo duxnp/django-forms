@@ -21,6 +21,19 @@ class CommentModelForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = {"name", "comment"}
+        widgets = {
+            "name": forms.TextInput(
+                attrs={"placeholder": "Enter your name", "class": "standard-input"}
+            ),
+            "comment": forms.Textarea(
+                attrs={
+                    "placeholder": "What is your comment?",
+                    "class": "standard-area",
+                    "rows": 10,
+                    "cols": 80,
+                }
+            ),
+        }
 
     def clean_name(self):
         print("form clean name")

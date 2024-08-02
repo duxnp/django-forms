@@ -1,4 +1,9 @@
-<script>
+{% extends "base.html" %}
+{% block title %}
+    Comment
+{% endblock title %}
+{% block content %}
+    <script>
   function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -32,9 +37,12 @@
     // do stuff with form response
     console.log('is this doing anything')
 }); {% endcomment %}
-</script>
-<form action="" method="post">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="Send message">
-</form>
+    </script>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Send message">
+        </form>
+    </div>
+{% endblock content %}

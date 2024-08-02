@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.field-error-message {
+    color: red;
+    font-style: italic;
+}
+
+.form-error-message {
+    color: purple;
+    font-style: italic;;
+}
+
+.field-label {
+    font-weight: 700;
+    color: #262626;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
