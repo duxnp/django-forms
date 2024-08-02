@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import Comment
 
@@ -15,6 +16,27 @@ class CommentForm(forms.Form):
 
 
 class CommentModelForm(forms.ModelForm):
+    template_name = "form_snippet.html"
+
     class Meta:
         model = Comment
         fields = {"name", "comment"}
+
+    def clean_name(self):
+        print("form clean name")
+        name = self.cleaned_data.get("name")
+        if name == "reject":
+            raise ValidationError("name has been rejected")
+        return name
+
+    def clean(self):
+        print("form clean")
+        cleaned_data = super().clean()
+        print(cleaned_data)
+        name = cleaned_data.get("name")
+        comment = cleaned_data.get("comment")
+
+        if name and name.startswith("t") and comment and not comment.startswith("c"):
+            raise ValidationError(
+                "Name starts with a t, so comment must start with a c."
+            )

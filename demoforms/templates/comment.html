@@ -18,6 +18,7 @@
   // or
   //const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
+  // this is just an example at the moment. this path doesn't exist yet.
   const request = new Request(
     '/demoforms/comment/ajax',
     {
@@ -27,13 +28,13 @@
     }
   );
 
-  fetch(request).then(function(response) {
+  {% comment %} fetch(request).then(function(response) {
     // do stuff with form response
-  });
+    console.log('is this doing anything')
+}); {% endcomment %}
 </script>
-
 <form action="" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form }}
   <input type="submit" value="Send message">
 </form>
